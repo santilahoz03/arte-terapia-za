@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Exclusive Discount — Crisis Moments Handbook</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#1A0F20;--card:#2A1A35;--a1:#D9C9F7;--a1d:#B89FE0;--a2:#F3B8D2;--gold:#FFD700;--goldd:#FFA500;--green:#5BAA7A;--white:#FFFFFF;--text-dim:rgba(255,255,255,.65);--font-title:'Playfair Display',serif;--font-body:'Inter',sans-serif;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-body);background:var(--bg);color:var(--white);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:24px 16px 48px;}
+.top-banner{background:linear-gradient(90deg,var(--a2),var(--a1));color:#1A0F20;font-size:13px;font-weight:700;text-align:center;padding:10px 20px;border-radius:12px;margin-bottom:28px;max-width:580px;width:100%;letter-spacing:.03em;}
+h1{font-family:var(--font-title);font-size:clamp(22px,4vw,32px);text-align:center;margin-bottom:10px;line-height:1.3;}
+h1 span{color:var(--gold);}
+.sub{font-size:14px;color:var(--text-dim);text-align:center;margin-bottom:28px;max-width:420px;}
+.scratch-area{position:relative;width:min(320px,80vw);height:min(200px,50vw);margin:0 auto 28px;border-radius:18px;overflow:hidden;cursor:crosshair;touch-action:none;}
+.scratch-bg{position:absolute;inset:0;background:linear-gradient(135deg,#2A1A35,#1A0F20);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border:2px solid var(--gold);}
+.scratch-label{font-family:var(--font-title);font-size:clamp(28px,8vw,44px);color:var(--gold);font-weight:900;line-height:1;}
+.scratch-sublabel{font-size:13px;color:var(--text-dim);}
+.scratch-sublabel2{font-size:12px;color:rgba(255,215,0,.6);}
+.scratch-cover{position:absolute;inset:0;border-radius:16px;cursor:crosshair;}
+.scratch-hint{text-align:center;font-size:14px;color:var(--text-dim);margin-bottom:28px;}
+.scratch-hint strong{color:var(--a1);}
+.progress-bar-wrap{width:min(320px,80vw);background:rgba(255,255,255,.1);border-radius:100px;height:6px;margin:0 auto 8px;overflow:hidden;}
+.progress-bar{height:6px;background:linear-gradient(90deg,var(--a2),var(--gold));border-radius:100px;width:0%;transition:width .1s;}
+.progress-txt{font-size:12px;color:var(--text-dim);text-align:center;margin-bottom:28px;}
+.result-card{display:none;background:linear-gradient(135deg,#2A1A35,#1A0F20);border:2px solid var(--gold);border-radius:20px;padding:32px 24px;text-align:center;max-width:420px;width:100%;margin:0 auto;}
+.result-card.show{display:block;}
+.confetti{font-size:36px;margin-bottom:12px;}
+.result-title{font-family:var(--font-title);font-size:clamp(22px,4vw,30px);color:var(--gold);margin-bottom:8px;}
+.result-pct{font-size:clamp(52px,10vw,72px);font-weight:900;background:linear-gradient(135deg,var(--gold),var(--a2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin:8px 0;}
+.result-label{font-size:14px;color:var(--text-dim);margin-bottom:20px;}
+.result-price-row{margin-bottom:24px;}
+.r-old{font-size:14px;color:var(--text-dim);text-decoration:line-through;margin-bottom:4px;}
+.r-new{font-family:var(--font-title);font-size:clamp(36px,7vw,48px);font-weight:900;color:var(--white);}
+.r-label{font-size:12px;color:var(--text-dim);}
+.btn-claim{display:block;width:100%;padding:18px;background:linear-gradient(135deg,var(--green),#4a9568);color:#fff;font-size:17px;font-weight:800;border:none;border-radius:14px;cursor:pointer;text-align:center;margin-bottom:12px;letter-spacing:.02em;}
+.btn-claim:disabled{opacity:.5;cursor:not-allowed;}
+.btn-skip{display:block;width:100%;padding:11px;background:transparent;color:var(--text-dim);font-size:13px;border:1px solid rgba(255,255,255,.2);border-radius:12px;cursor:pointer;text-align:center;}
+.product-name{font-size:13px;color:var(--a1);margin-bottom:16px;font-weight:600;}
+.guarantee{font-size:12px;color:var(--text-dim);margin-top:14px;}
+noscript .fallback{background:var(--card);border:1px solid var(--a1);border-radius:14px;padding:24px;text-align:center;max-width:400px;margin:20px auto;}
+noscript .fallback h2{font-family:var(--font-title);color:var(--gold);margin-bottom:12px;}
+</style>
+</head>
+<body>
+
+<div class="top-banner">🃏 Scratch & reveal your exclusive discount</div>
+<h1>Scratch to unlock your <span>special offer</span></h1>
+<p class="sub">The Crisis Moments Handbook is still available at a discounted price. Scratch the card to reveal.</p>
+
+<div class="scratch-area" id="scratch-area">
+  <div class="scratch-bg">
+    <div class="scratch-label" id="reveal-label">50% OFF</div>
+    <div class="scratch-sublabel">Crisis Moments Handbook</div>
+    <div class="scratch-sublabel2">Scratch to reveal →</div>
+  </div>
+  <canvas id="scratch-canvas" style="position:absolute;inset:0;border-radius:16px;"></canvas>
+</div>
+
+<div class="scratch-hint"><strong>🖐 Scratch</strong> the card to reveal your discount</div>
+
+<div class="progress-bar-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+<p class="progress-txt" id="progress-txt">Scratched: 0%</p>
+
+<div class="result-card" id="result-card">
+  <div class="confetti">🎉</div>
+  <div class="result-title">You revealed:</div>
+  <div class="result-pct">50%</div>
+  <div class="result-label">OFF the Crisis Moments Handbook</div>
+  <p class="product-name">Crisis Moments Handbook — 7 Protocols + Pocket Cards</p>
+  <div class="result-price-row">
+    <div class="r-old">Was: R 149</div>
+    <div class="r-new">R 74</div>
+    <div class="r-label">One-time · instant access · 30-day guarantee</div>
+  </div>
+  <button class="btn-claim" id="btn-claim" data-pp-accept>✔ Claim my 50% discount — R 74</button>
+  <button class="btn-skip" data-pp-decline>No thanks, I don't want the discount</button>
+  <p class="guarantee">🛡️ 30-day money-back guarantee · no questions asked</p>
+</div>
+
+<noscript>
+<div class="fallback">
+  <h2>Your 50% discount</h2>
+  <p>Crisis Moments Handbook at R 74 (was R 149).</p>
+  <button class="btn-claim" data-pp-accept>Claim — R 74</button>
+  <button class="btn-skip" data-pp-decline>No thanks</button>
+</div>
+</noscript>
+
+<script>
+(function(){
+  const area=document.getElementById('scratch-area');
+  const canvas=document.getElementById('scratch-canvas');
+  const ctx=canvas.getContext('2d');
+  let W,H,revealed=false,painting=false;
+
+  function resize(){
+    W=area.clientWidth;H=area.clientHeight;
+    canvas.width=W;canvas.height=H;
+    ctx.fillStyle='#6B3080';
+    ctx.fillRect(0,0,W,H);
+    // Add texture text
+    ctx.fillStyle='rgba(255,255,255,.12)';
+    ctx.font='bold 56px Inter,sans-serif';
+    ctx.textAlign='center';
+    ctx.fillText('SCRATCH',W/2,H/2+10);
+    ctx.font='22px Inter,sans-serif';
+    ctx.fillText('HERE',W/2,H/2+42);
+  }
+  resize();
+  window.addEventListener('resize',resize);
+
+  function getPos(e){
+    const r=canvas.getBoundingClientRect();
+    const src=e.touches?e.touches[0]:e;
+    return{x:src.clientX-r.left,y:src.clientY-r.top};
+  }
+  function scratch(x,y){
+    ctx.globalCompositeOperation='destination-out';
+    ctx.beginPath();
+    ctx.arc(x,y,28,0,2*Math.PI);
+    ctx.fill();
+    ctx.globalCompositeOperation='source-over';
+    checkProgress();
+  }
+  function checkProgress(){
+    const data=ctx.getImageData(0,0,W,H).data;
+    let clear=0;
+    for(let i=3;i<data.length;i+=4){if(data[i]<128)clear++;}
+    const pct=Math.round(clear/(W*H)*100);
+    document.getElementById('progress-bar').style.width=Math.min(pct,100)+'%';
+    document.getElementById('progress-txt').textContent='Scratched: '+Math.min(pct,100)+'%';
+    if(pct>60&&!revealed){revealed=true;showResult();}
+  }
+  canvas.addEventListener('mousedown',e=>{painting=true;scratch(...Object.values(getPos(e)));});
+  canvas.addEventListener('mousemove',e=>{if(painting)scratch(...Object.values(getPos(e)));});
+  canvas.addEventListener('mouseup',()=>painting=false);
+  canvas.addEventListener('touchstart',e=>{e.preventDefault();painting=true;scratch(...Object.values(getPos(e)));},{passive:false});
+  canvas.addEventListener('touchmove',e=>{e.preventDefault();if(painting)scratch(...Object.values(getPos(e)));},{passive:false});
+  canvas.addEventListener('touchend',()=>painting=false);
+
+  function showResult(){
+    document.getElementById('progress-txt').style.display='none';
+    document.getElementById('progress-bar').parentElement.style.display='none';
+    const card=document.getElementById('result-card');
+    card.classList.add('show');
+    card.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }
+})();
+</script>
+</body>
+</html>

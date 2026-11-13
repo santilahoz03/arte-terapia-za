@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OTO1 — Transformation Journal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FFF8F4;--bg2:#F6ECFF;--a1:#D9C9F7;--a1d:#B89FE0;--a2:#F3B8D2;--a2d:#E98B7A;--title:#4E4036;--body:#6F6258;--card:#FFFFFF;--green:#5BAA7A;--gold:#C9A84C;--font-title:'Playfair Display',Georgia,serif;--font-body:'Inter',system-ui,sans-serif;--radius:18px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-body);color:var(--body);background:var(--bg);line-height:1.6;}
+img{max-width:100%;display:block;}
+.oto-notice{background:linear-gradient(90deg,var(--a2),var(--a1));padding:12px 20px;text-align:center;font-size:13px;font-weight:600;color:var(--title);letter-spacing:.02em;}
+.oto-wrap{max-width:740px;margin:0 auto;padding:0 20px;}
+.oto-hero{padding:48px 20px 36px;text-align:center;background:var(--bg);}
+.oto-hero h1{font-family:var(--font-title);color:var(--title);font-size:clamp(24px,4.5vw,38px);line-height:1.2;max-width:660px;margin:0 auto 16px;}
+.oto-hero h1 em{display:block;font-size:.65em;font-style:normal;color:var(--body);font-family:var(--font-body);font-weight:400;margin-top:10px;}
+.oto-hero .sub{font-size:clamp(15px,2.5vw,18px);color:var(--body);max-width:560px;margin:0 auto;}
+.oto-confirm{background:var(--bg2);border-left:4px solid var(--a1d);padding:16px 20px;margin:28px auto;max-width:700px;border-radius:var(--radius);font-size:15px;color:var(--title);}
+.oto-confirm strong{display:block;margin-bottom:4px;font-family:var(--font-title);font-size:17px;}
+.oto-bridge{padding:32px 20px;max-width:700px;margin:0 auto;text-align:center;}
+.oto-bridge .bq{font-family:var(--font-title);font-size:clamp(18px,3vw,24px);color:var(--title);font-style:italic;margin-bottom:12px;}
+.oto-bridge p{font-size:15px;color:var(--body);}
+.oto-mockup{padding:12px 20px 28px;text-align:center;}
+.mock-book{display:inline-block;background:linear-gradient(135deg,#D9C9F7 0%,#F3B8D2 100%);border-radius:20px;padding:44px 36px;max-width:380px;width:100%;box-shadow:0 12px 48px rgba(78,64,54,.18);text-align:center;}
+.mock-icon{font-size:52px;margin-bottom:16px;}
+.mock-title{font-family:var(--font-title);font-size:22px;font-weight:900;color:var(--title);margin-bottom:8px;}
+.mock-sub{font-size:13px;color:var(--body);opacity:.85;}
+.mock-pills{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:16px;}
+.mock-pill{background:rgba(255,255,255,.65);border-radius:100px;padding:4px 12px;font-size:12px;font-weight:600;color:var(--title);}
+.oto-pains{background:var(--bg2);padding:36px 20px;}
+.oto-pains h2{font-family:var(--font-title);color:var(--title);font-size:clamp(20px,3.5vw,26px);text-align:center;margin-bottom:24px;}
+.pain-list{max-width:620px;margin:0 auto;display:flex;flex-direction:column;gap:14px;}
+.pain-item{background:var(--card);border-radius:14px;padding:16px 20px;display:flex;align-items:flex-start;gap:14px;box-shadow:0 2px 10px rgba(78,64,54,.07);}
+.pain-icon{font-size:22px;flex-shrink:0;}
+.pain-text{font-size:15px;color:var(--body);}
+.oto-present{padding:40px 20px;max-width:700px;margin:0 auto;text-align:center;}
+.oto-present h2{font-family:var(--font-title);color:var(--title);font-size:clamp(20px,3.5vw,28px);margin-bottom:16px;}
+.oto-present p{font-size:16px;color:var(--body);max-width:600px;margin:0 auto;}
+.pill-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:20px;}
+.pill{background:var(--a1);color:var(--title);padding:7px 16px;border-radius:100px;font-size:14px;font-weight:600;}
+.oto-checklist{background:var(--bg2);padding:36px 20px;}
+.oto-checklist h2{font-family:var(--font-title);color:var(--title);font-size:clamp(20px,3.5vw,26px);text-align:center;margin-bottom:24px;}
+.check-grid{max-width:680px;margin:0 auto;display:flex;flex-direction:column;gap:14px;}
+.check-item{background:var(--card);border-radius:14px;padding:18px 20px;display:flex;align-items:flex-start;gap:14px;}
+.check-icon{width:28px;height:28px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;font-size:15px;}
+.check-text strong{display:block;color:var(--title);font-size:15px;margin-bottom:4px;}
+.check-text span{font-size:14px;color:var(--body);}
+.oto-steps{padding:40px 20px;max-width:700px;margin:0 auto;text-align:center;}
+.oto-steps h2{font-family:var(--font-title);color:var(--title);font-size:clamp(20px,3.5vw,26px);margin-bottom:28px;}
+.steps-row{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;}
+.step{flex:1;min-width:160px;max-width:200px;text-align:center;}
+.step-num{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--a2),var(--a1));color:var(--title);font-weight:700;font-family:var(--font-title);font-size:20px;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;}
+.step p{font-size:14px;color:var(--body);}
+.oto-offer{background:var(--bg2);padding:40px 20px;}
+.offer-box{max-width:600px;margin:0 auto;background:var(--card);border-radius:var(--radius);padding:32px 28px;box-shadow:0 4px 24px rgba(78,64,54,.12);border:2px solid var(--a1);}
+.offer-badge{display:inline-block;background:linear-gradient(135deg,var(--a2),var(--a1));color:var(--title);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:6px 18px;border-radius:100px;margin-bottom:20px;}
+.offer-box h2{font-family:var(--font-title);color:var(--title);font-size:clamp(20px,3.5vw,26px);margin-bottom:20px;line-height:1.3;}
+.offer-list{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:24px;}
+.offer-list li{font-size:14px;color:var(--body);display:flex;gap:10px;align-items:flex-start;}
+.offer-list li::before{content:"✓";color:var(--green);font-weight:700;flex-shrink:0;}
+.price-row{text-align:center;margin-bottom:24px;}
+.price-old{font-size:15px;color:var(--body);text-decoration:line-through;margin-bottom:4px;}
+.price-big{font-family:var(--font-title);font-size:clamp(44px,8vw,60px);font-weight:900;color:var(--a1d);line-height:1;}
+.price-sub{font-size:13px;color:var(--body);margin-top:6px;}
+.guarantee-line{font-size:13px;color:var(--body);text-align:center;margin-bottom:20px;}
+.btn-accept{display:block;width:100%;padding:18px;background:linear-gradient(135deg,var(--green),#4a9568);color:#fff;font-family:var(--font-body);font-size:17px;font-weight:700;border:none;border-radius:14px;cursor:pointer;text-align:center;margin-bottom:12px;letter-spacing:.02em;}
+.btn-accept:hover{opacity:.92;}
+.btn-decline{display:block;width:100%;padding:12px;background:transparent;color:var(--body);font-family:var(--font-body);font-size:14px;border:2px solid var(--a1);border-radius:14px;cursor:pointer;text-align:center;}
+.btn-decline:hover{background:var(--a1);color:var(--title);}
+.oto-trust{padding:28px 20px;max-width:700px;margin:0 auto;text-align:center;}
+.trust-row{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-bottom:20px;}
+.trust-badge{background:var(--card);border:1px solid var(--a1);border-radius:12px;padding:10px 18px;font-size:13px;color:var(--title);font-weight:600;}
+.footer-note{font-size:12px;color:var(--body);max-width:500px;margin:0 auto;}
+@media(max-width:520px){.steps-row{flex-direction:column;align-items:center;}.offer-box{padding:24px 18px;}.btn-accept{font-size:15px;}}
+</style>
+</head>
+<body>
+
+<div class="oto-notice">⏳ Before you continue to your access — an exclusive addition to your order</div>
+
+<div class="oto-hero">
+  <div class="oto-wrap">
+    <h1>Turn 100 exercises into 30 days of real change — with your personal <em>Transformation Journal</em></h1>
+    <p class="sub">A structured daily guide to building your art therapy practice — daily prompts, emotion tracking and weekly reflection, so the handbook doesn't sit unused.</p>
+  </div>
+</div>
+
+<div class="oto-wrap">
+  <div class="oto-confirm">
+    <strong>Your Art Therapy Handbook is confirmed! 🎉</strong>
+    You now have 100+ exercises for self-discovery and emotional healing. Now you can add a tool that will help you turn them into a real daily practice.
+  </div>
+</div>
+
+<div class="oto-bridge">
+  <p class="bq">"If you open the handbook right now — which exercise will you do today?"</p>
+  <p>Most people don't know where to begin. Not because the exercises aren't good — but because without structure it's hard to build a habit. The journal solves exactly that.</p>
+</div>
+
+<div class="oto-mockup">
+  <div class="mock-book">
+    <div class="mock-icon">📔</div>
+    <div class="mock-title">Transformation Journal</div>
+    <div class="mock-sub">30-Day Art Therapy Planner</div>
+    <div class="mock-pills">
+      <span class="mock-pill">PDF A5</span>
+      <span class="mock-pill">Printable</span>
+      <span class="mock-pill">30 Days</span>
+      <span class="mock-pill">Instant Access</span>
+    </div>
+  </div>
+</div>
+
+<div class="oto-pains">
+  <div class="oto-wrap">
+    <h2>Do any of these sound familiar?</h2>
+    <div class="pain-list">
+      <div class="pain-item">
+        <span class="pain-icon">📖</span>
+        <p class="pain-text">You open the PDF, see 100 exercises and... don't know where to start. You close it.</p>
+      </div>
+      <div class="pain-item">
+        <span class="pain-icon">⏰</span>
+        <p class="pain-text">You tell yourself "I'll do it tomorrow" — and tomorrow comes two weeks later.</p>
+      </div>
+      <div class="pain-item">
+        <span class="pain-icon">🔄</span>
+        <p class="pain-text">You do one exercise, feel something good, but then lose the thread and don't know how to continue.</p>
+      </div>
+      <div class="pain-item">
+        <span class="pain-icon">📊</span>
+        <p class="pain-text">You want to see how your emotions change over time — but you have no way to track them.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="oto-present">
+  <h2>That's why the <em style="font-style:italic;color:var(--a1d);">Transformation Journal</em> exists</h2>
+  <p>It's your personal 30-day guide — created specifically for people who have the Handbook. Every day you'll find a specific exercise prompt, a reflection space and a visual emotion tracker. No decisions needed: just open it and do it.</p>
+  <div class="pill-row">
+    <span class="pill">Printable PDF</span>
+    <span class="pill">A5 Format</span>
+    <span class="pill">30-day structure</span>
+    <span class="pill">Instant access</span>
+  </div>
+</div>
+
+<div class="oto-checklist">
+  <div class="oto-wrap">
+    <h2>What you get</h2>
+    <div class="check-grid">
+      <div class="check-item">
+        <div class="check-icon">✓</div>
+        <div class="check-text">
+          <strong>30 daily prompts (1 per day)</strong>
+          <span>Each prompt includes a specific exercise from the Handbook + a reflection question. No decisions needed — the journal decides for you.</span>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon">✓</div>
+        <div class="check-text">
+          <strong>4 weekly closings</strong>
+          <span>At the end of each week — a review page: what did I feel, what changed, what do I want to keep.</span>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon">✓</div>
+        <div class="check-text">
+          <strong>Emotion tracker (30 × 7)</strong>
+          <span>Colour in how you feel each day across 7 core emotions. At the end of the month — a clear picture of your transformation.</span>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon">✓</div>
+        <div class="check-text">
+          <strong>First Week Guide</strong>
+          <span>Specific guidance for days 1–7: how to start, how long, when, and what to do if something blocks you.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="oto-steps">
+  <h2>How it works</h2>
+  <div class="steps-row">
+    <div class="step">
+      <div class="step-num">1</div>
+      <p><strong>Print the journal</strong><br>or work directly in PDF on your phone or tablet.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <p><strong>Follow today's prompt</strong><br>15–20 minutes with one exercise each day.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <p><strong>Colour your tracker</strong><br>At the end of the month — see how you've transformed.</p>
+    </div>
+  </div>
+</div>
+
+<div class="oto-offer">
+  <div class="oto-wrap">
+    <div class="offer-box">
+      <div style="text-align:center;">
+        <span class="offer-badge">One-time addition to your order</span>
+      </div>
+      <h2>Transformation Journal — 30-Day Art Therapy Planner</h2>
+      <ul class="offer-list">
+        <li>30 daily prompts with exercises from the Handbook</li>
+        <li>4 weekly reflection and review pages</li>
+        <li>Emotion tracker 30 × 7 (colour-in format)</li>
+        <li>First Week Guide (days 1–7 step by step)</li>
+        <li>Printable PDF, A5 format — instant access</li>
+      </ul>
+      <div class="price-row">
+        <div class="price-old">Regular price: R 299</div>
+        <div class="price-big">R 139</div>
+        <div class="price-sub">One-time payment · Instant access · 30-day guarantee</div>
+      </div>
+      <p class="guarantee-line">🛡️ 30-day money-back guarantee — no questions asked</p>
+      <button class="btn-accept" data-pp-accept>✔ Add the Transformation Journal to my order — R 139</button>
+      <button class="btn-decline" data-pp-decline>Continue without the Transformation Journal →</button>
+    </div>
+  </div>
+</div>
+
+<div class="oto-trust">
+  <div class="trust-row">
+    <span class="trust-badge">📥 Instant access</span>
+    <span class="trust-badge">🖨 Printable PDF</span>
+    <span class="trust-badge">🛡 30-day guarantee</span>
+    <span class="trust-badge">🔒 Secure payment</span>
+  </div>
+  <p class="footer-note">Your Art Therapy Handbook purchase is confirmed. This addition is completely optional — declining does not affect your access.</p>
+</div>
+
+</body>
+</html>
